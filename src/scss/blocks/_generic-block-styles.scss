@@ -1,0 +1,36 @@
+.section-title {
+  text-align: center;
+  color: $color-primary;
+  .pre-title {
+    color: $color-ternary;
+    @include fontSize($size: 40px);
+    font-weight: 700;
+  }
+}
+.content-wrapper {
+  #buzzsprout-large-player-1554266 {
+    max-width: 70%;
+    margin: 0 auto;
+    @media (max-width: 767px) {
+      max-width: 100%;
+    }
+  }
+}
+.orange-section {
+  .section-title {
+    color: $color-quarternary;
+  }
+  .btn-primary {
+    background: $color-quarternary;
+    &:hover {
+      background: $color-secondary;
+    }
+  }
+}
+
+.twi {
+  .twi-image {
+    order: -1;
+    margin-bottom: 3rem;
+  }
+}

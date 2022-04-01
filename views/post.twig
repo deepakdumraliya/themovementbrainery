@@ -1,0 +1,21 @@
+{% extends 'base.twig' %}
+
+{% block main_content %}
+	<div class="post-content">
+		{% if post.thumbnail %}
+			<div class="img-wrap">
+				<img class="post-thumbnail img-fluid" src="{{ post.thumbnail.src('full') }}">
+			</div>
+		{% endif %}
+		{% if post_type == 'courses' %}
+			<h1 class="course-title">{{ post.title }}</h1>
+		{% endif %}
+		{{ post.content  }}
+		{% if post.meta('calendy_link') %}
+			<div class="text-center mt-5">
+				{{ return_button(post.meta('calendy_link', 'btn btn-primary')) }}
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}
+

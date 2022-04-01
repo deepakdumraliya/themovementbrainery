@@ -1,0 +1,79 @@
+{% extends 'base.twig' %}
+{% block top_section %}
+	{% if featured_posts %}
+		{% set page_title = archive_title %}
+		{% include 'partials/page-header-slider.twig' %}
+	{% else %}
+		{{ parent() }}
+	{% endif %}
+{% endblock %}
+
+{% block main_content %}
+	<section id="{{ current_post_type }}-content" class="content-area">
+		<div id="content" class="site-content" role="main">
+			<div id="post-{{ current_post_type }}" class="custom-post-{{ current_post_type }}">
+				<div class="post-info">
+					{% set post_count = 0 %}
+					{% if posts %}
+						<div class="container-fluid padded-section">
+							<div class="container">
+								<div class="row card-row">
+								{% if post_type == 'courses' %}
+									{% for post in posts %}
+										{% set linkText = post_type == 'courses' ? 'View Course' : 'Learn More' %}
+										
+											{{ ea_render_card_for_post(post.id, {'normal_classes': 'col-md-4 col-sm-6 mb-5 col-12 div-link', 'default_link_text' : linkText, 'normal_button_classes' : 'btn btn-primary mb-5' }) }}
+										{% set post_count = post_count + 1 %}
+									{% endfor %}
+								{% else %}
+										{{ ea_leadership_card( posts, 'mentor' )}}
+								{% endif %}
+									{% if post_type == 'courses' and options.add_learn_more_card_on_courses %}
+										{% set card_image = options.card_image %}
+										{% set card_title = options.card_title %}
+										{% set card_content = options.card_content %}
+										{% set card_link = options.card_link %}
+										<div class="col-md-4 col-sm-6 mb-5 col-12 div-link">
+											<div class="card clean-card">
+												<img class="card-img-top img-fluid" alt="{{ card_image.alt|e('esc_attr') }}" src="{{ card_image.url|e('esc_url') }}" />
+												<div class="card-body">
+													<h6 class="card-title">
+														<a 
+															class="card-click" 
+															title="Learn More about Our Courses" 
+															href="{{ card_link.url|e('esc_url') }}"
+															target="{{ card_link.target ? card_link.target : '_self' }}"
+															>
+															{{ card_title }}
+														</a>
+													</h6>
+													{{ card_content }}
+													{{ return_button( card_link, 'mt-3 btn btn-primary mb-5' ) }}
+												</div>
+											</div>
+										</div>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					{% endif %}
+					{% if posts|length == 0 %}
+						<div class="post-item">
+							<div class="post-title">
+								<div class="post">
+									<h2>No Items Found</h2>
+									<div class="my-3">
+										<a href="{{ function('get_post_type_archive_link', current_post_type) }}" class="btn btn-link reset-button">Reset Filters</a>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						{% if posts.pagination %}
+							{% include 'partials/pagination.twig' with { 'pagination': posts.pagination } %}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

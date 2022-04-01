@@ -1,0 +1,32 @@
+{% set section_classes = [] %}
+{% set section_classes =  header.front_page ? section_classes|merge(['home-header']) : section_classes|merge(['default-top'])%}
+{% set section_classes =  header.header_content ? section_classes|merge(['with-content']) : section_classes|merge(['no-content'])%}
+{% set section_classes = header.column_image ? section_classes|merge(['with-image']) : section_classes|merge(['no-image']) %}
+{% set container_class = header.front_page ? 'home-header' : 'default-header' %}
+{% set col_classes = ['col-12'] %}
+{% set col_classes = header.column_image ? col_classes|merge(['col-md-6']) : col_classes %}
+{% set title_class = header.header_content ? 'with-content' : 'no-content' %}
+<section class="top-section {{ section_classes|join(' ')}}">
+    <div class="container-fluid text-light {{ container_class|e('esc_html') }}" style="{{ header.header_style }}">
+        <div class="row header-wrapper">
+            <div class="{{ col_classes|join(' ')}}">
+                <div class="header-content">
+                    {% if post_type != 'courses' or header.is_archive %}
+                        <h1 class="{{ title_class|e('esc_html') }}">{{ header.header_title }}</h1>
+                    {% endif %}
+                    {% if(header.header_content) %}
+                        {{ header.header_content }}
+                    {% endif %}
+                    {% if(header.link) %}
+                        {{ return_button(header.link, 'btn btn-primary mt-5') }}
+                    {% endif %}
+                </div>
+            </div>
+            {% if(header.column_image) %}
+                <div class="{{ col_classes|join(' ')  }} img-col">
+                    <img class="img-fluid" src="{{ header.column_image.url }}" alt="{{ header.column_image.alt }}">
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

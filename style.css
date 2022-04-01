@@ -1,0 +1,17 @@
+/*
+ Theme Name:   Movement Brainery Theme
+ Theme URI:    http://carimus.com/
+ Description:  Child theme to be modified on top of the core Everest Agency Core theme.
+ Author:       Carimus
+ Author URI:   https://carimus.com
+ Template:     everest-agency-core
+ Version:      1.0.0
+ License:      Unlicensed (Commercial)
+ Tags:         carimus, everest-agency
+ Text Domain:  everest-agency-child
+*/
+
+/*
+ * Note that by default, this file is not enqueued or included so you should instead put
+ * theme-specific styles in css/theme.css (which is enqueued).
+ */

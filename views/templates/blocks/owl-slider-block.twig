@@ -1,0 +1,64 @@
+{#
+/**
+ * Block Name: Owl Slider Block
+ *
+ * This is the template that displays the owl slider block.
+ */
+#}
+
+{% if is_preview %}
+    <p>I will only appear in the editor.</p>
+{% endif %}
+
+{% set extraClasses = [] %}
+{#Set extra classes to be used in JS for owl slider options#}
+{% set extraClasses = extraClasses|merge(['slides-' ~ fields.number_slides]) %}
+{% set extraClasses = extraClasses|merge(['margin-' ~ fields.margin]) %}
+{% set extraClasses = block.className ? extraClasses|merge([block.className]) : extraClasses %}
+{% set extraClasses = fields.loop ? extraClasses|merge(['loop']) : extraClasses %}
+{% set extraClasses = fields.autoplay ? extraClasses|merge(['autoplay']) : extraClasses %}
+{% set extraClasses = fields.navigation ? extraClasses|merge(['nav']) : extraClasses %}
+{% set extraClasses = fields.dots ? extraClasses|merge(['dots']) : extraClasses %}
+{% set extraClasses = fields.circle_images ? extraClasses|merge(['round-images']) : extraClasses %}
+{% set id = fields.anchor ? fields.anchor : block.id %}
+<section id="{{ id }}" class="owl-slider-block {{ block.className }}">
+    <div class="container-fluid m-0 padded-section {{ classes.extraClasses|join(' ')}}" style="{{ classes.styleArray|join('; ') }}">
+        <div class="row">
+            <div id="owl-{{ block.id }}" class="col-12 wrapper">
+                <div class="container">
+                    {% include 'templates/blocks/block-parts/block-section-title.twig' %}
+                    <div class="row">
+                        <div class="col-12">
+                            <div  class="owl-carousel owl-theme block-owl-section {{ extraClasses|join(' ')}}">
+                                {% if not fields.has_content_slides and fields.images %}
+                                    {% for image in fields.images %}
+                                        {# Add div-link class if there is a link#}
+                                        {% set linkClass = image.image_link? 'div-link' : '' %}
+                                        <div class="owl-slide image-slide {{ linkClass }}">
+                                            <img src="{{ Image(image.image).src }}" alt="{{ Image(image.image).alt }}">
+                                            {% if(image.image_link) %}
+                                                {{ function('return_button', image.image_link, 'card-click') }}
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                {% elseif fields.has_content_slides and fields.content_slides %}
+                                    {% for content in fields.content_slides %}
+                                        {# Add div-link class if there is a link#}
+                                        <div class="owl-slide content-slide">
+                                            {{ content.column_content }}
+                                            {% if(content.column_link) %}
+                                                {{ function('return_button', content.column_link, 'btn btn-primary') }}
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+

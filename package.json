@@ -1,0 +1,48 @@
+{
+	"name": "everest-agency-child",
+	"private": true,
+	"version": "1.2.0",
+	"description": "The child wordpress theme for the EA framework.",
+	"main": "style.css",
+	"scripts": {
+		"build": "wp-scripts build src/*.js",
+		"check-engines": "wp-scripts check-engines",
+		"check-licenses": "wp-scripts check-licenses",
+		"format:js": "wp-scripts format-js",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"lint:md:docs": "wp-scripts lint-md-docs",
+		"lint:md:js": "wp-scripts lint-md-js",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"packages-update": "wp-scripts packages-update",
+		"start": "wp-scripts start src/*.js",
+		"test:e2e": "wp-scripts test-e2e",
+		"test:unit": "wp-scripts test-unit-js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://bitbucket.org/ea-team/ea-wordpress-theme.git"
+	},
+	"prettier": "@wordpress/prettier-config",
+	"keywords": [
+		"carimus",
+		"everest-agency",
+		"wordpress",
+		"core",
+		"parent",
+		"theme"
+	],
+	"author": "Carimus <connect@carimus.com>",
+	"license": "UNLICENSED",
+	"homepage": "https://bitbucket.org/ea-team/ea-wordpress-theme#readme",
+	"devDependencies": {
+		"@wordpress/scripts": "^16.1.2",
+		"bootstrap": "^4.5.3",
+		"file-loader": "^6.2.0",
+		"owl.carousel": "^2.3.4",
+		"sass-loader": "^10.0.3"
+	},
+	"browserslist": [
+		"> 2%"
+	]
+}

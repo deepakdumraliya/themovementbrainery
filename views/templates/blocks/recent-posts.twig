@@ -1,0 +1,60 @@
+{#
+/**
+ * Block Name: Recent Posts Block
+ *
+ * This is the template that displays the faq block.
+ */
+#}
+
+{% if is_preview %}
+    <p>I will only appear in the editor.</p>
+{% endif %}
+{% set extraClasses = [] %}
+{% set extraClasses = block.className ? extraClasses|merge([block.className]) : extraClasses %}
+{% set id = fields.anchor ? fields.anchor : block.id %}
+{% set post_wrap_class = fields.list_view ? 'col' %}
+<section id="{{ id }}" class="recent-posts-block {{ block.className }}">
+    <div class="container-fluid m-0 padded-section {{ classes.extraClasses|join(' ')}}" style="{{ classes.styleArray|join('; ') }}">
+       <div class="container">
+           {% if(fields.list_view) %}
+           <div class="row related-list">
+               <div class="col-md-3 col-12 title-wrap">
+                   <div class="container">
+                       {% include 'templates/blocks/block-parts/block-section-title.twig' %}
+                   </div>
+               </div>
+               <div class="col-md-9 col-12">
+                   {% if (posts) %}
+                       {% for post in posts %}
+                           {% include 'partials/post-row.twig' with { 'show_date': false } %}
+                       {% endfor %}
+                   {% else %}
+                       <h2>No Recent Posts Were Found</h2>
+                   {% endif %}
+               </div>
+           </div>
+           {% else %}
+               {% include 'templates/blocks/block-parts/block-section-title.twig' %}
+               <div class="row related-items">
+                   {% if (posts) %}
+                       {% for post in posts %}
+                               {{ ea_render_card_for_post(post.id, {'normal_classes': 'col-md-4 col-sm-6 col-12 div-link', 'default_link_text' : learn_more_text, 'normal_button_classes' : 'btn btn-primary' }) }}
+                       {% endfor %}
+                   {% else %}
+                       <h2>No Recent Posts Were Found</h2>
+                   {% endif %}
+               </div>
+           {% endif %}
+
+           </div>
+           {% if(archive) %}
+               {% set link_title = fields.post_type ~ ' Archive Page' %}
+               <div class="row">
+                   <div class="col-12 text-center">
+                       {{ return_button({'url': archive, 'title' : archive_more_text }, 'btn btn-primary my-5', link_title) }}
+                   </div>
+               </div>
+           {% endif %}
+       </div>
+    </div>
+</section>

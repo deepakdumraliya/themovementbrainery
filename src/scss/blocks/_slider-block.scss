@@ -1,0 +1,35 @@
+.owl-slider-block {
+  .owl-carousel {
+    .owl-stage {
+      display: flex;
+      align-items: center;
+    }
+    &.round-images {
+      .owl-slide {
+        img {
+          height: 300px;
+          width: 300px;
+          object-fit: cover;
+          object-position: center;
+          border-radius: 100%;
+        }
+      }
+    }
+  }
+  .image-slide {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    min-height: unset;
+    flex-direction: column;
+  }
+}
+//Slider Styles
+.block-owl-section {
+  .card-click {
+   text-align: center;
+   font-size: 1.5rem;
+   font-weight: 700;
+   margin-top: 1rem;
+  }
+}

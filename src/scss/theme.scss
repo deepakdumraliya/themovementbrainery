@@ -1,0 +1,79 @@
+//Owl Slider styles
+$owl-image-path: '../../node_modules/owl.carousel/dist/assets/';
+@import '~owl.carousel/src/scss/owl.carousel';
+@import '~owl.carousel/src/scss/owl.theme.default';
+//Imports
+@import 'variables';
+@import '_bootstrap';
+//Components
+@import 'components/navbar';
+@import 'components/header';
+@import 'components/buttons';
+@import 'components/ctas';
+@import 'components/footer';
+@import 'components/cards';
+//Blocks
+@import 'blocks/generic-block-styles';
+@import 'blocks/slider-block';
+
+//Pages
+@import 'pages/post';
+
+//Generic Styles
+.div-link:hover {
+  cursor: pointer;
+}
+body {
+  font-family: $body-font;
+  @include fontSize($size: 18px);
+}
+h1, h2 {
+  font-family: $highlight-font;
+  font-weight: 700;
+  text-transform: lowercase;
+  @include fontSize($size: 70px);
+  @media (max-width: 767px) {
+    @include fontSize($size: 50px);
+  }
+}
+a {
+  &:hover {
+    text-decoration: none;
+    color: $color-secondary;
+  }
+}
+video, iframe {
+  max-width: 100%;
+}
+img {
+  &.aligncenter {
+    display: flex;
+    margin: 0 auto;
+  }
+}
+.text-green {
+  color: $color-secondary !important;
+}
+.text-pink {
+  color: $color-primary !important;
+}
+.text-orange {
+  color: $color-quarternary !important;
+}
+.underline {
+  &:after {
+    content: '';
+    width: 200px;
+    height: 12px;
+    background-color: $color-primary;
+    -webkit-mask: url(../../images/Underline.svg) no-repeat 50% 50%;
+    mask: url(../../images/Underline.svg) no-repeat 50% 50%;
+    -webkit-mask-size: contain;
+    mask-size: cover;
+    display: block;
+    margin: 0 auto;
+  }
+  &.green:after {
+    background-color: $color-secondary;
+  }
+}

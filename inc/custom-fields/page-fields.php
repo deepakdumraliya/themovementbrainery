@@ -1,0 +1,155 @@
+<?php
+/**
+ * Add general page fields for ACF Pro
+ *
+ * @package Everest_Agency
+ * @subpackage Everest_Agency_Core
+ */
+
+if (function_exists('acf_add_local_field_group')):
+    acf_add_local_field_group(
+        array(
+            'key'                   => 'group_59ds68e78s468e',
+            'title'                 => 'Page Fields',
+            'fields'                => array(
+                array(
+                    'key'               => 'field_ovs_59b6ecd3b33fd',
+                    'label'             => 'Header Background Image',
+                    'name'              => 'header_image',
+                    'type'              => 'image',
+                    'instructions'      => '',
+                    'required'          => 0,
+                    'conditional_logic' => 0,
+                    'wrapper'           => array(
+                        'width' => '',
+                        'class' => '',
+                        'id'    => '',
+                    ),
+                    'return_format'     => 'url',
+                    'preview_size'      => 'thumbnail',
+                    'library'           => 'all',
+                    'min_width'         => '',
+                    'min_height'        => '',
+                    'min_size'          => '',
+                    'max_width'         => '',
+                    'max_height'        => '',
+                    'max_size'          => '',
+                    'mime_types'        => '',
+                ),
+                array(
+                    'key' => 'field_5fds68e461ds6',
+                    'label' => 'Header Column Image',
+                    'name' => 'header_column_image',
+                    'type' => 'image',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'return_format' => 'array',
+                    'preview_size' => 'medium',
+                    'library' => 'all',
+                    'min_width' => '',
+                    'min_height' => '',
+                    'min_size' => '',
+                    'max_width' => '',
+                    'max_height' => '',
+                    'max_size' => '',
+                    'mime_types' => '',
+                ),
+                array(
+                    'key'               => 'field_ovs_59b6ece6b33fe',
+                    'label'             => 'Header Title',
+                    'name'              => 'header_title',
+                    'type'              => 'text',
+                    'instructions'      => 'Overrides default page title',
+                    'required'          => 0,
+                    'conditional_logic' => 0,
+                    'wrapper'           => array(
+                        'width' => '',
+                        'class' => '',
+                        'id'    => '',
+                    ),
+                    'default_value'     => '',
+                    'placeholder'       => '',
+                    'prepend'           => '',
+                    'append'            => '',
+                    'maxlength'         => '',
+                ),
+                array(
+                    'key'               => 'field_308f09j3cb33ff',
+                    'label'             => 'Header Content',
+                    'name'              => 'header_content',
+                    'type'              => 'wysiwyg',
+                    'instructions'      => '',
+                    'required'          => 0,
+                    'conditional_logic' => 0,
+                    'wrapper'           => array(
+                        'width' => '',
+                        'class' => '',
+                        'id'    => '',
+                    ),
+                    'default_value'     => '',
+                    'tabs'              => 'all',
+                    'toolbar'           => 'full',
+                    'media_upload'      => 1,
+                    'delay'             => 0,
+                ),
+                array(
+                    'key' => 'field_5f0dse879e846s8e5',
+                    'label' => 'Header Link',
+                    'name' => 'header_link',
+                    'type' => 'link',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'return_format' => 'array',
+                ),
+                array(
+                    'key'               => 'field_ovs_5c33f01932b5d',
+                    'label'             => 'Custom CSS',
+                    'name'              => 'page_custom_css',
+                    'type'              => 'textarea',
+                    'instructions'      => '<strong>Advanced!</strong> Include whatever custom CSS should be rendered on this page. Do not include <code>&lt;style&gt;</code> or <code>&lt;link&gt;</code> tags, just raw CSS.',
+                    'required'          => 0,
+                    'conditional_logic' => 0,
+                    'wrapper'           => array(
+                        'width' => '',
+                        'class' => '',
+                        'id'    => '',
+                    ),
+                    'default_value'     => '',
+                    'placeholder'       => '',
+                    'maxlength'         => '',
+                    'rows'              => 12,
+                    'new_lines'         => '',
+                ),
+            ),
+            'location'              => array(
+                array(
+                    array(
+                        'param'    => 'post_type',
+                        'operator' => '==',
+                        'value'    => 'page',
+                    ),
+                ),
+            ),
+            'menu_order'            => 0,
+            'position'              => 'normal',
+            'style'                 => 'default',
+            'label_placement'       => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen'        => '',
+            'active'                => 1,
+            'description'           => '',
+        )
+    );
+endif;

@@ -1,0 +1,52 @@
+footer {
+  &.mainfooter {
+    background: $white;
+    padding: 0;
+    ul {
+      @include menu-list;
+    }
+    h5 {
+      margin-bottom: 2rem;
+    }
+    a {
+      color: $color-ternary;
+      &:hover {
+        color: $color-secondary;
+      }
+    }
+    .socicons {
+      display: flex;
+      li {
+        margin-right: 1rem;
+      }
+    }
+    .logo-col {
+      padding: 0 5rem;
+      img {
+        margin-bottom: 3rem;
+      }
+      @media (max-width: 767px) {
+        padding: 0;
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+    }
+  }
+  .subfooter {
+    background-color: $color-ternary;
+    color: $light-gray;
+    .col {
+      display: flex;
+      justify-content: center;
+      p:first-child {
+        margin-right: 2rem;
+      }
+    }
+    a {
+      color: $color-secondary;
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+}

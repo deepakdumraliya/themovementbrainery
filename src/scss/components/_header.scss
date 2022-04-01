@@ -1,0 +1,42 @@
+.top-section {
+  .home-header, .default-header {
+    background: $color-ternary;
+  }
+  &.no-image {
+    .default-header {
+      padding-top: 50px;
+    }
+  }
+  &.with-content {
+    .header-content {
+      flex-direction: column;
+      padding: 0 10%;
+      align-items: flex-start;
+    }
+    .underline {
+      margin-top: 1rem;
+      @include fontSize($size: 40px);
+      color: $color-primary;
+      text-transform: uppercase;
+      letter-spacing: .25rem;
+      font-family: Courier, sans-serif;
+    }
+    .img-col {
+      img {
+        max-height: 100%;
+      }
+    }
+  }
+  .header-content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .img-col {
+    img {
+      max-height: 300px;
+      width: auto;
+    }
+  }
+}

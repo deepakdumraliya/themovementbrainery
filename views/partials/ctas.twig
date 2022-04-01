@@ -1,0 +1,43 @@
+{# CTA Partial on most interior pages #}
+{% if(options.call_to_action) %}
+    {% set colClass = ['col-12'] %}
+    <section class="cta-section">
+        {% for cta in options.call_to_action %}
+        {% set extraClasses = ['cta-' ~ loop.index] %}
+        {% set extraClasses = cta.cta_link ? extraClasses|merge(['div-link']) : extraClasses %}
+        {% set colClass = cta.cta_column_image ? colClass|merge(['col-md-6']) : colClass %}
+        {% set contClass = cta.dark_background? 'text-light' : '' %}
+        {% set styleArray = [] %}
+        {% set styleArray = cta.background_image ? styleArray|merge(['background-image: url(' ~ cta.background_image.url ~ ');']) : styleArray %}
+        {% set styleArray = cta.background_color ? styleArray|merge(['background-color: ' ~ cta.background_color ~ ';']) : styleArray %}
+        <div class="container-fluid {{ contClass }}" style="{{ styleArray|join('; ') }}">
+            <div class="container">
+                <div class="row">
+                    {% if(cta.cta_column_image) %}
+                        <div class="{{ colClass|join(' ') }} cta-image mb-5">
+                            <img class="img-fluid" src="{{ cta.cta_column_image.url }}" alt="{{ cta.cta_column_image.alt }}">
+                        </div>
+                    {% endif %}
+                    <div class="{{ colClass|join(' ') }} cta {{ extraClasses|join(' ') }}">
+                        <div class="cta-content">
+                            {% if(cta.cta_title) %}
+                                <h2>{{ cta.cta_title }}</h2>
+                            {% endif %}
+                            {% if(cta.cta_content) %}
+                                {{ cta.cta_content }}
+                            {% endif %}
+                            {% if(cta.cta_link) %}
+                                <div class="text-center">
+                                    {{ return_button(cta.cta_link, 'btn btn-primary card-click') }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+
+{% endif %}
+

@@ -1,0 +1,48 @@
+//Colors
+$color-primary: #f268b4;
+$color-secondary: #0fd1d1;
+$color-ternary: #292342;
+$color-quarternary: #ffa600;
+$black: #000000;
+$white: #ffffff;
+$light-gray: #939393;
+$dark-gray: #707070;
+$search-bg: lighten( $color-primary, 30% );
+
+//Fonts
+$heavy: 700;
+$base-font-size: 15px;
+$body-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$highlight-font: Montserrat, Proxima-nova, sans-serif;
+//Layout
+$max-width: 1650px;
+
+$container-max-widths: (
+	xl: 1368px,
+);
+
+//Functions
+@function calculateRem( $size ) {
+	$remSize: $size / $base-font-size;
+	@return #{$remSize}rem;
+}
+
+//Mixins
+@mixin background-center {
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+@mixin themeFont( $font: $highlight-font ) {
+	font-family: $font;
+}
+@mixin fontSize( $size, $attr: font-size ) {
+	#{$attr}: calculateRem( $size );
+}
+@mixin transition( $time: 0.25s ) {
+	transition: $time;
+}
+@mixin menu-list {
+	list-style-type: none;
+	padding-inline-start: 0;
+}

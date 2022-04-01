@@ -1,0 +1,21 @@
+{% if type == 'hidden' %}
+<div class="search search-hidden d-flex">
+    <form class="hidden" role="search" method="get" id="searchformHidden" action="{{ site.url }}">
+        <div>
+            <input title="Press Enter to Search." type="text" value="" name="s" placeholder="" />
+        </div>
+    </form>
+    <button role="button" class="btn" id="showSearch" aria-label="Toggle Search Bar"><i class="fa fa-search"></i></button>
+</div>
+{% else %}
+<form class="form-group" role="search" method="get" id="searchform" action="{{ site.url }}">
+    <div class="form-group">
+        <div class="input-group search-input">
+            <input class="form-control py-2" type="search" name="s" placeholder="search">
+            <span class="input-group-append">
+            <div class="input-group-text"><i class="fa fa-search"></i></div>
+        </span>
+        </div>
+    </div>
+</form>
+{% endif %}

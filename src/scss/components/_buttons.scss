@@ -1,0 +1,22 @@
+.btn {
+  font-family: $highlight-font;
+  font-size: 16px;
+  color: $white;
+  border-radius: 3rem;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  min-width: 200px;
+}
+.btn-primary {
+  &:hover {
+    background: $color-secondary;
+    border-color: $color-secondary;
+  }
+}
+.btn-secondary {
+  &:hover {
+    background: $color-primary;
+    border-color: $color-primary;
+  }
+}

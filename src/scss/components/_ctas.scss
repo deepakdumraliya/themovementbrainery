@@ -1,0 +1,71 @@
+//CTA Styles
+.cta-section {
+  .container-fluid {
+    padding: 100px 0;
+  }
+  .cta {
+    justify-content: center;
+    display: flex;
+    align-self: center;
+    h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .btn-primary {
+      text-align: center;
+    }
+    .cta-content {
+      max-width: 100%;
+    }
+  }
+  .cta-image {
+    text-align: center;
+    img {
+      max-height: 519px;
+      width: auto;
+      margin: 0 auto;
+    }
+  }
+  ._form-content {
+    margin-top: 2rem;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    ._form-label {
+      display: none;
+    }
+    ._form_element {
+      width: 45%;
+      @media (max-width: 767px) {
+        width: 60%;
+      }
+    }
+    input[type=text] {
+      padding: 1rem;
+      font-family: Montserrat, Proxima-nova, sans-serif;
+      min-width: 100%;
+      &:active, &:focus {
+        outline: none;
+      }
+      @media (max-width: 767px) {
+        min-width: unset;
+      }
+    }
+    ._button-wrapper {
+      display: flex;
+    }
+    #_form_1_submit {
+      background: $color-primary;
+      color: $white;
+      font-weight: 700;
+      border: none;
+      padding: 1.14rem 2rem;
+      font-family: Montserrat, Proxima-nova, sans-serif;
+      font-size: 16px;
+      @include transition();
+      &:hover {
+        background: $color-quarternary;
+      }
+    }
+  }
+}

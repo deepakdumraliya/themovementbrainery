@@ -1,0 +1,12 @@
+{{ function('get_header') }}
+
+{% block main %}
+	{% block top_section %}
+		{% include 'partials/page-header.twig' %}
+	{% endblock %}
+	{% block main_content %}{% endblock %}
+	{% block ctas %}
+		{% include 'partials/ctas.twig' %}
+	{% endblock %}
+{% endblock %}
+{{ function('get_footer') }}
