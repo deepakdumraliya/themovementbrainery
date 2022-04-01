@@ -26,7 +26,7 @@
 										{% set post_count = post_count + 1 %}
 									{% endfor %}
 								{% else %}
-										{{ ea_leadership_card( posts, 'mentor' )}}
+										{{ ea_potenza_leadership_card( posts, 'mentor' )}}
 								{% endif %}
 									{% if post_type == 'courses' and options.add_learn_more_card_on_courses %}
 										{% set card_image = options.card_image %}
@@ -49,6 +49,7 @@
 													</h6>
 													{{ card_content }}
 													{{ return_button( card_link, 'mt-3 btn btn-primary mb-5' ) }}
+													
 												</div>
 											</div>
 										</div>

@@ -37,6 +37,8 @@ function add_ea_functions_to_twig( $twig ) {
 	$twig->addFunction( new Timber\Twig_Function( 'return_button', 'return_button' ) );
 	$twig->addFunction( new Timber\Twig_Function( 'ea_render_card_for_post', 'ea_render_card_for_post' ) );
 	$twig->addFunction( new Timber\Twig_Function( 'ea_leadership_card', 'ea_leadership_card' ) );
+	$twig->addFunction(new Timber\Twig_Function('ea_potenza_leadership_card', 'ea_potenza_leadership_card'));
+
 	return $twig;
 }
 

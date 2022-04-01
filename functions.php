@@ -43,14 +43,15 @@
  * @see \ea_get_template_resource_uri()
  * @see http://www.wpbeginner.com/wp-tutorials/how-to-properly-add-javascripts-and-styles-in-wordpress/
  */
-function ea_theme_scripts_and_styles() {
+function ea_theme_scripts_and_styles()
+{
 	$theme_version = ea_get_version();
 	$core_version  = ea_get_core_version();
 	// Load our styles
 	// This is parent theme
 	wp_enqueue_style(
 		'ea-theme-style',
-		ea_get_core_template_resource_uri( '/build/style.css' ),
+		ea_get_core_template_resource_uri('/build/style.css'),
 		array(),
 		$theme_version
 	);
@@ -64,37 +65,140 @@ function ea_theme_scripts_and_styles() {
 	// This is child theme
 	wp_enqueue_style(
 		'ea-child-theme-style',
-		get_stylesheet_directory_uri() . ( '/build/style.css' ),
-		array( 'ea-theme-style' ),
+		get_stylesheet_directory_uri() . ('/build/style.css'),
+		array('ea-theme-style'),
 		$theme_version
 	);
 	wp_enqueue_script(
 		'everest-agency-theme-main',
 		get_stylesheet_directory_uri() . '/build/index.js',
-		array( 'wp-element', 'jquery' ),
+		array('wp-element', 'jquery'),
 		$theme_version,
 		true
 	);
 }
 
-add_action( 'wp_enqueue_scripts', 'ea_theme_scripts_and_styles', 10 );
-add_image_size( 'ea-gallery', 540, $crop = false );
+add_action('wp_enqueue_scripts', 'ea_theme_scripts_and_styles', 10);
+add_image_size('ea-gallery', 540, $crop = false);
+
+function ea_potenza_leadership_card($leaderArray = array(), $slug = false, $classes = false)
+{
+	foreach ($leaderArray as $leaderIndex => $leader) {
+		$thumbnail    = get_the_post_thumbnail_url($leader->ID, 'large');
+		$image_id     = get_post_thumbnail_id($leader->ID);
+		$extraClasses = $classes ? $classes : '';
+		$image_alt    = get_post_meta($image_id, '_wp_attachment_image_alt', true);
+		$position     = get_field('mentor_title', $leader->ID);
+		$cvv		  = get_field('upload_cvv', $leader->ID);
+
+		$name         = $leader->post_title;
+		$company      = get_field('company', $leader->ID);
+		$appt_link    = get_field('calendy_link', $leader->ID);
+		$content      = $leader->post_content;
+		$slug         = $slug ? $slug : 'leader-' . ea_random_number($name);
+?>
+		<div class="col-12 col-md-4 col-sm-6 mb-5 leadership-card <?php echo esc_attr($extraClasses); ?>">
+			<div class="card clean-card">
+				<?php
+				if ($thumbnail) {
+					ea_lazy_load_image($thumbnail, $image_alt, 'card-img-top img-fluid');
+				?>
+				<?php } ?>
+				<div class="card-body">
+					<h3 class="card-title"><?php echo $name; ?></h3>
+
+					<?php if ($position) { ?>
+						<p class="meta"><?php echo $position; ?></p>
+					<?php } ?>
+
+					<?php if ($company) { ?>
+						<p class="meta company"><?php echo $company; ?></p>
+					<?php } ?>
+					<?php
+					if ($appt_link) {
+						return_button($appt_link, 'btn btn-primary');
+					}
+					?>
+					<div class="card-content pt-3">
+						<a class="btn btn-primary" title="More info on <?php echo esc_attr($name); ?>" data-toggle="modal" data-target=".bio-modal-<?php echo $slug . '-' . $leaderIndex; ?>" href="#">Read More</a>
+					</div>
+					<div class="card-content pt-3">
+						<a class="btn btn-primary" title="click to download" href="<?php if (empty($cvv)) {
+																						echo "#";
+																					} else {
+																						echo $cvv;
+																					}	?>" <?php if (!empty($cvv)) {
+																									echo "download";
+																								} ?>>CV</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade bio-modal-<?php echo $slug . '-' . $leaderIndex; ?>" tabindex="-1" role="dialog" aria-labelledby="bio-modal-<?php echo $slug . '-' . $leaderIndex; ?>" aria-hidden="true">
+			<div class="modal-dialog modal-lg center">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-12">
+								<div class="leader-details">
+									<?php
+									if ($thumbnail) {
+										ea_lazy_load_image($thumbnail,  $image_alt, 'img-fluid mb-2');
+									}
+									?>
+								</div>
+								<div class="bio-content">
+									<?php if ($name) { ?>
+										<h3 class="mb-0"><?php echo $name; ?></h3>
+									<?php
+									}
+									if ($position) {
+									?>
+										<p class="meta"><?php echo $position; ?></p>
+									<?php
+									}
+									echo $content;
+									?>
+								</div>
+								<?php
+								if ($appt_link) {
+									return_button($appt_link, 'btn btn-primary mt-5');
+								}
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<?php
+	}
+}
+
+
 
 require_once(__DIR__ . '/inc/custom-fields.php');
 require_once(__DIR__ . '/inc/custom-post-types.php');
 require_once(__DIR__ . '/inc/timber-functions.php');
 
-function register_my_menus() {
+function register_my_menus()
+{
 	register_nav_menus(
 		array(
-			'footer_column_1' => __( 'Footer Column 1' ),
+			'footer_column_1' => __('Footer Column 1'),
 		)
 	);
 }
-add_action( 'init', 'register_my_menus' );
+add_action('init', 'register_my_menus');
 
 //Add custom post types to the recent post block bc acf hook runs before post type
-function acf_load_post_type_field_choices( $field ) {
+function acf_load_post_type_field_choices($field)
+{
 
 	// reset choices
 	$field['choices'] = array();
@@ -111,20 +215,17 @@ function acf_load_post_type_field_choices( $field ) {
 
 
 	// loop through array and add to field 'choices'
-	if( is_array($choices) ) {
+	if (is_array($choices)) {
 
-		foreach( $choices as $choice ) {
+		foreach ($choices as $choice) {
 
-			$field['choices'][ $choice ] = $choice;
-
+			$field['choices'][$choice] = $choice;
 		}
-
 	}
 
 
 	// return the field
 	return $field;
-
 }
 
 add_filter('acf/load_field/name=post_type', 'acf_load_post_type_field_choices');

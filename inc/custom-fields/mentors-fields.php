@@ -40,6 +40,25 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 					'append'            => '',
 					'maxlength'         => '',
 				),
+				array(
+					'key' => 'field_6246f17d563c2',
+					'label' => 'Upload CVV',
+					'name' => 'upload_cvv',
+					'type' => 'file',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array(
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'return_format' => 'url',
+					'library' => 'all',
+					'min_size' => '',
+					'max_size' => '',
+					'mime_types' => 'pdf,doc',
+				),
 			),
 			'location'              => array(
 				array(
